@@ -12,6 +12,7 @@ import GenresPage from './pages/GenresPage';
 import useTheme from './hooks/useTheme';
 import clsx from 'clsx';
 import NowPlayingPage from './pages/NowPlayingPage';
+import MovieDetails from './pages/MovieDetails';
 
 function App() {
 	const {isAnotherStyle} = useTheme();
@@ -31,6 +32,8 @@ function App() {
 					<Route path="/" element={<HomePage />} />
 					<Route path="/nowplaying" element={<NowPlayingPage />} />
 					<Route path="/genres" element={<GenresPage />} />
+
+					<Route path="/movies/:id" element={<MovieDetails />}/>
 
 					<Route path="*" element={<NotFoundPage />} />
 				</Routes>

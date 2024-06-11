@@ -5,3 +5,35 @@
 	min-height: 100vh;
 
 }
+
+
+.picture-in-card {
+	width: 20vh;
+	height: 20vh;
+	object-fit: cover;
+	border-radius: 5%;
+	margin-bottom: 1rem;
+}
+
+.picture-in-card-sm {
+	width: 5%;
+	height: 5%;
+	object-fit: cover;
+	border-radius: 50%;
+	margin-bottom: 1rem;
+}
+
+.tagline {
+	font-family: "Vesper Libre", serif;
+	font-size: xx-large;
+}
+
+.actors-div {
+	width: 100%;
+	height: 300px;
+	overflow: scroll;
+		&:hover {
+			overflow: auto;
+			cursor: grab;
+	}
+}

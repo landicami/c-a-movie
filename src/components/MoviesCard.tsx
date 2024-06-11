@@ -30,7 +30,7 @@ const MoviesCard: React.FC<MoviesCardProps> = ({ movies }) => {
 				<Card.Text className='mt-2'>
 					More info
 				</Card.Text>
-				<Link to={`/`} className=''>Read more...</Link>
+				<Link to={`/movies/${movie.id}`} className=''>Read more...</Link>
 
 				</Card.Body>
 
