@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GenreResponse } from "./movieTypes";
+import { GenreResponse, NowPlayingResponse } from "./movieTypes";
 
 const BEARER = import.meta.env.VITE_MOVIE_BEARER_KEY
 
@@ -16,6 +16,12 @@ const instance = axios.create({
 const get = async <T>(endpoint: string) => {
 	const res = await instance.get<T>(endpoint);
 	return res.data;
+}
+
+/** Get now playing */
+export const getNowPlayingMovies = async () => {
+	const data = await get<NowPlayingResponse>("/movie/now_playing?include_adult=false&language=sv-SE&page=1");
+	return data;
 }
 
 /** Get the genres */

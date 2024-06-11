@@ -17,6 +17,8 @@ const Navigation = () => {
 					<Navbar.Collapse id="basic-navbar-nav">
 						<Nav className="ms-auto">
 							<Nav.Link as={NavLink} to="/">Home</Nav.Link>
+							<Nav.Link as={NavLink} to="/nowplaying">Now playing</Nav.Link>
+
 							<Nav.Link as={NavLink} to="/genres">Genres</Nav.Link>
 
 							<Button variant="outline-dark" onClick={toggleTheme}>

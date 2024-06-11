@@ -11,6 +11,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import GenresPage from './pages/GenresPage';
 import useTheme from './hooks/useTheme';
 import clsx from 'clsx';
+import NowPlayingPage from './pages/NowPlayingPage';
 
 function App() {
 	const {isAnotherStyle} = useTheme();
@@ -28,6 +29,7 @@ function App() {
 			<Container className='pt-2'>
 				<Routes>
 					<Route path="/" element={<HomePage />} />
+					<Route path="/nowplaying" element={<NowPlayingPage />} />
 					<Route path="/genres" element={<GenresPage />} />
 
 					<Route path="*" element={<NotFoundPage />} />
