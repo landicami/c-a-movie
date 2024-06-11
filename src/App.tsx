@@ -9,11 +9,21 @@ import Navigation from './components/Navigation';
 import NotFoundPage from './pages/NotFoundPage';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import GenresPage from './pages/GenresPage';
+import useTheme from './hooks/useTheme';
+import clsx from 'clsx';
 
 function App() {
+	const {isAnotherStyle} = useTheme();
+
+	const myCssClasses = clsx({
+		"bg-white": !isAnotherStyle,
+		"text-dark": !isAnotherStyle,
+		"cinema": isAnotherStyle,
+		"text-white": isAnotherStyle,
+	})
 
   return (
-	<>
+	<div className={myCssClasses}>
 		<Navigation/>
 			<Container className='pt-2'>
 				<Routes>
@@ -25,7 +35,7 @@ function App() {
 			</Container>
 
 		<ReactQueryDevtools />
-	</>
+	</div>
   )
 }
 
