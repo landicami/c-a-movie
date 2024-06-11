@@ -22,7 +22,6 @@ const ThemeCProvider: React.FC<ProviderProps> = ({ children }) => {
 	const toggleTheme = () => {
 		setAnotherStyle(prevStyle => {
 		  const newStyle = !prevStyle;
-		  console.log(prevStyle);
 		  localStorage.setItem('isAnotherStyle', JSON.stringify(newStyle));
 		  return newStyle;
 		});

@@ -24,7 +24,7 @@ const GenresPage = () => {
 
   return (
     <>
-		<div className='p-2 rounded mb-2'>
+		<div className='p-2 border rounded mb-2'>
 			<h1>Choose movie by genre por favor</h1>
 
 		<Form.Select
