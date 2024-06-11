@@ -1,39 +1,52 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { getGenres } from '../service/movieAPi';
 import { useQuery } from '@tanstack/react-query';
-
 import Form from "react-bootstrap/Form";
 
 const GenresPage = () => {
-	const [genre, setGenre] = useState("")
-	console.log(genre);
+  const [genre, setGenre] = useState(() => {
+    return localStorage.getItem('selectedGenre') || "";
+  });
 
-	const { data: genres, error, isError, isLoading } = useQuery({
-		queryKey: ['genres'],
-		queryFn: getGenres,
-	  });
+  const genresFromApi = useQuery({
+    queryKey: ['genres'],
+    queryFn: getGenres,
+  });
 
+//   const movesByGenre = useQuery({
+// 	queryKey: ["moviesByGenre"],
+// 	queryFn:
+//   })
+
+  useEffect(() => {
+    localStorage.setItem('selectedGenre', genre);
+  }, [genre]);
 
   return (
-	<>
-		<h1 className='bg-white text-dark p-2 rounded'>Choose movie by genre por favor</h1>
+    <>
+		<div className='p-2 rounded mb-2'>
+			<h1>Choose movie by genre por favor</h1>
+
 		<Form.Select
 			aria-label="Select movie by genre"
 			onChange={e => setGenre(e.target.value)}
+			value={genre}
 		>
-			{genres && genres.genres.map((genre) => (
-				<option key={genre.id} value={genre.name}>{genre.name}</option>
-		))};
+			<option value="">Select a genre</option>
+			{genresFromApi.data && genresFromApi.data.genres.map((genre) => (
+			<option key={genre.id} value={genre.name}>{genre.name}</option>
+			))}
 		</Form.Select>
 
-		{!genres && <p>No data available yet...</p>}
+    	{genre && <h3 className="mt-4">Showing movies by {genre}</h3>}
 
-		{isLoading && <p>Loading...</p>}
+		{!genresFromApi.data && <p>No data available yet...</p>}
+		{/* {isLoading && <p>Loading...</p>} gör en global Loading*/}
+		{genresFromApi.isError && <p>{genresFromApi.error.message}</p>}
+		</div>
 
-		{isError && (error.message)}
-
-	</>
-  )
+    </>
+  );
 }
 
-export default GenresPage
+export default GenresPage;
