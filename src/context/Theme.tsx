@@ -14,11 +14,19 @@ interface ProviderProps {
 }
 
 const ThemeCProvider: React.FC<ProviderProps> = ({ children }) => {
-	const [isAnotherStyle, setAnotherStyle] = useState(true);
+	const [isAnotherStyle, setAnotherStyle] = useState<boolean>(() => {
+		const savedThemeinWeb = localStorage.getItem('isAnotherStyle');
+		return savedThemeinWeb ? JSON.parse(savedThemeinWeb) : true;
+	});
 
 	const toggleTheme = () => {
-		setAnotherStyle(!isAnotherStyle);
-	}
+		setAnotherStyle(prevStyle => {
+		  const newStyle = !prevStyle;
+		  console.log(prevStyle);
+		  localStorage.setItem('isAnotherStyle', JSON.stringify(newStyle));
+		  return newStyle;
+		});
+	  };
 
   	return (
 		<ThemeContext.Provider value={{ isAnotherStyle, toggleTheme}}>
