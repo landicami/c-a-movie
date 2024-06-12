@@ -18,9 +18,7 @@ const MovieDetailsPage = () => {
 	}
 
 	return (
-	<div className='p-2 border rounded mb-2 row '>
-		<h1 className='text-center'>{aSingleMovie.data.title}</h1>
-
+	<div className='p-2 mb-2 row '>
 		<DetailsCard
 		data={aSingleMovie.data} />
 

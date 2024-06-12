@@ -59,7 +59,6 @@ export interface ASingleMovieResponse {
 		cast: Cast[];
 		crew: Crew[];
 	}
-
   }
 
   interface Cast {
@@ -69,15 +68,16 @@ export interface ASingleMovieResponse {
 	character: string;
   }
 
-  interface Crew {
-
-  }
+ export interface Crew  {
+	id: number;
+	name: string;
+	department: string;
+	job: string;
+}
 
   interface ProductionCompany {
 	id: number;
-	logo_path: string
 	name: string;
-	origin_country: string;
   }
 
   /** An Actor */

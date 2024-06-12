@@ -1,12 +1,30 @@
 import React from 'react'
 import Card from "react-bootstrap/Card";
 import ListGroup  from "react-bootstrap/ListGroup";
-import { ASingleMovieResponse } from '../service/movieTypes';
+import { ASingleMovieResponse, Crew } from '../service/movieTypes';
 import { Link } from 'react-router-dom';
+import TanstackBasicTable from './table/TanstackTable';
+import { ColumnDef } from '@tanstack/react-table';
 
 interface ASingleMovieProps {
 	data: ASingleMovieResponse
 }
+
+const columnDefs: ColumnDef<Crew>[] = [
+	{
+		accessorKey: "name",
+		header: "Name",
+	},
+	{
+		accessorKey: "department",
+		header: "Department",
+	},
+	{
+		accessorKey: "job",
+		header: "Job",
+
+	}
+];
 
 const DetailsCard: React.FC<ASingleMovieProps> = ({data}) => {
 	const formatRuntime = (runtime: number) => {
@@ -30,6 +48,8 @@ const DetailsCard: React.FC<ASingleMovieProps> = ({data}) => {
 						<p className='text-start tagline mt-2 pt-3'>"{data.tagline}"</p>
 						<p className='text-start tagline-sm mt-2 pt-1'>Runtime: {formatRuntime(data.runtime)} </p>
 						<p className='text-start tagline-sm mt-2 pt-1'>Vote: {data.vote_average} </p>
+						<p className='text-start tagline-sm mt-2 pt-1'>Release date: {data.release_date} </p>
+
 					</div>
 				</div>
 				<Card.Title>{data.title}</Card.Title>
@@ -49,8 +69,11 @@ const DetailsCard: React.FC<ASingleMovieProps> = ({data}) => {
 			</ListGroup>
 		</Card>
 
-		<h2 className='mt-2'>Actors, scroll down to see more:</h2>
-		<div className='row actors-div'>
+		<hr className='mt-4'/>
+
+
+		<h2 className='mt-4'>Actors, scroll down to see more:</h2>
+		<div className='row rounded roling-div'>
 		{data.credits.cast.map(actor =>
 		<Card key={actor.id} className='col-lg-2 col-sm-4 mt-2'>
 		<Card.Body>
@@ -67,6 +90,12 @@ const DetailsCard: React.FC<ASingleMovieProps> = ({data}) => {
 		)}
 		</div>
 
+		<hr className='mt-4'/>
+
+		<h2 className='mt-4'>Crew</h2>
+		<div>
+			<TanstackBasicTable columns={columnDefs} data={data.credits.crew} />
+		</div>
 </>
 	)
 }
