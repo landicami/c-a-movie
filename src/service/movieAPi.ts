@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ASingleMovieResponse, ActorResponse, GenreResponse, NowPlayingResponse } from "./movieTypes";
+import { ASingleMovieResponse, ActorResponse, GenreResponse, MoviesResponse, NowPlayingResponse } from "./movieTypes";
 
 const BEARER = import.meta.env.VITE_MOVIE_BEARER_KEY
 
@@ -40,5 +40,11 @@ export const getASingleMovie = async (movieId: number) => {
 /** Get a single actor */
 export const getActor = async (actorId: number) => {
 	const data = await get<ActorResponse>(`/person/${actorId}?include_adult=false&language=en-US`);
+	return data;
+}
+
+/** Get the moviecredits for actor */
+export const getActorMovies = async(actorId: number) => {
+	const data = await get<MoviesResponse>(`https://api.themoviedb.org/3/person/${actorId}/movie_credits?language=en-US&include_adult=false`);
 	return data;
 }

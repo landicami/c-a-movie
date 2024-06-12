@@ -93,3 +93,16 @@ export interface ASingleMovieResponse {
 	place_of_birth: string;
 	profile_path: string;
   }
+
+  /** a Movie from Actor */
+
+  export interface MoviesResponse {
+	cast: Movie[]
+  }
+
+  interface Movie {
+	genre_ids: number[];
+	id: number,
+	title: string;
+	poster_path: string;
+}
