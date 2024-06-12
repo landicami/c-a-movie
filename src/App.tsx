@@ -1,18 +1,22 @@
 import { Route, Routes } from 'react-router-dom';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
 //bootstrap components
 import Container from "react-bootstrap/Container"
 //Pages
-import HomePage from './pages/HomePage';
-
-import '../src/assets/App.scss';
-import Navigation from './components/Navigation';
-import NotFoundPage from './pages/NotFoundPage';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import GenresPage from './pages/GenresPage';
-import useTheme from './hooks/useTheme';
-import clsx from 'clsx';
+import HomePage from './pages/HomePage';
+import MovieDetailsPage from './pages/MovieDetailsPage';
+import NotFoundPage from './pages/NotFoundPage';
 import NowPlayingPage from './pages/NowPlayingPage';
-import MovieDetails from './pages/MovieDetails';
+//Components
+import Navigation from './components/Navigation';
+import GlobalLoading from './components/GlobalLoading';
+//Style
+import clsx from 'clsx';
+import '../src/assets/App.scss';
+//Hooks
+import useTheme from './hooks/useTheme';
 
 function App() {
 	const {isAnotherStyle} = useTheme();
@@ -27,18 +31,17 @@ function App() {
   return (
 	<div className={myCssClasses}>
 		<Navigation/>
-			<Container className='pt-2'>
-				<Routes>
-					<Route path="/" element={<HomePage />} />
-					<Route path="/nowplaying" element={<NowPlayingPage />} />
-					<Route path="/genres" element={<GenresPage />} />
+			<GlobalLoading />
+				<Container className='pt-2'>
+					<Routes>
+						<Route path="/" element={<HomePage />} />
+						<Route path="/nowplaying" element={<NowPlayingPage />} />
+						<Route path="/genres" element={<GenresPage />} />
+						<Route path="/movies/:id" element={<MovieDetailsPage />}/>
 
-					<Route path="/movies/:id" element={<MovieDetails />}/>
-
-					<Route path="*" element={<NotFoundPage />} />
-				</Routes>
-			</Container>
-
+						<Route path="*" element={<NotFoundPage />} />
+					</Routes>
+				</Container>
 		<ReactQueryDevtools />
 	</div>
   )
