@@ -27,9 +27,9 @@ const DetailsCard: React.FC<ASingleMovieProps> = ({data}) => {
 						/>
 					</div>
 					<div className='col-lg-10 col-sm-8'>
-						<p className='text-start tagline mt-4 pt-4'>"{data.tagline}"</p>
-						<p className='text-start tagline mt-4 pt-4'>Runtime: {formatRuntime(data.runtime)} </p>
-
+						<p className='text-start tagline mt-2 pt-3'>"{data.tagline}"</p>
+						<p className='text-start tagline-sm mt-2 pt-1'>Runtime: {formatRuntime(data.runtime)} </p>
+						<p className='text-start tagline-sm mt-2 pt-1'>Vote: {data.vote_average} </p>
 					</div>
 				</div>
 				<Card.Title>{data.title}</Card.Title>
@@ -60,7 +60,7 @@ const DetailsCard: React.FC<ASingleMovieProps> = ({data}) => {
 				alt="Actor of a movie"
 			/>
 
-			<Card.Title>{actor.name}</Card.Title>
+			<Link className="actor-link" to={"/actor/" + actor.id}><Card.Title className='mt-2'>{actor.name}</Card.Title></Link>
 			<Card.Text>as {actor.character}</Card.Text>
 		</Card.Body>
 		</Card>

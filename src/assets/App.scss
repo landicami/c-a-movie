@@ -26,7 +26,12 @@
 
 .tagline {
 	font-family: "Vesper Libre", serif;
-	font-size: xx-large;
+	font-size: x-large;
+}
+
+.tagline-sm {
+	font-family: "Vesper Libre", serif;
+	font-size: medium;
 }
 
 .actors-div {
@@ -36,5 +41,17 @@
 		&:hover {
 			overflow: auto;
 			cursor: grab;
+	}
+}
+
+.actor-link {
+	color: darkred;
+
+	&:hover {
+		color: darkgray;
+	}
+
+	&:after {
+		color: lightcoral
 	}
 }
