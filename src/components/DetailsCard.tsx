@@ -75,13 +75,16 @@ const DetailsCard: React.FC<ASingleMovieProps> = ({data}) => {
 		<h2 className='mt-4'>Actors, scroll down to see more:</h2>
 		<div className='row rounded roling-div'>
 		{data.credits.cast.map(actor =>
-		<Card key={actor.id} className='col-lg-2 col-sm-4 mt-2'>
+		<Card key={actor.id} className='col-lg-2 col-sm-6 mt-2'>
 		<Card.Body>
+			<div className='d-flex justify-content-center'>
 			<Card.Img
-				variant="top"
-				src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`}
+
+				className='picture-in-card-sm '
+				src={actor.profile_path ?`https://image.tmdb.org/t/p/w500/${actor.profile_path}` : "/no-img.png"}
 				alt="Actor of a movie"
 			/>
+			</div>
 
 			<Link className="actor-link" to={"/actor/" + actor.id}><Card.Title className='mt-2'>{actor.name}</Card.Title></Link>
 			<Card.Text>as {actor.character}</Card.Text>
