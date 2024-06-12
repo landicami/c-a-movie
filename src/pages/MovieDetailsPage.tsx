@@ -1,12 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { getASingleMovie } from '../service/movieAPi';
 import DetailsCard from '../components/DetailsCard';
 
-
-
-const MovieDetails = () => {
+const MovieDetailsPage = () => {
 	const {id} = useParams();
 	const movieId = Number(id);
 
@@ -31,4 +28,4 @@ const MovieDetails = () => {
   )
 }
 
-export default MovieDetails
+export default MovieDetailsPage
