@@ -1,7 +1,6 @@
 import React from 'react'
 import Card from "react-bootstrap/Card";
 import ListGroup  from "react-bootstrap/ListGroup";
-import Image from "react-bootstrap/Image"
 import { ASingleMovieResponse } from '../service/movieTypes';
 import { Link } from 'react-router-dom';
 
@@ -58,7 +57,7 @@ const DetailsCard: React.FC<ASingleMovieProps> = ({data}) => {
 			<Card.Img
 				variant="top"
 				src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`}
-				alt="Poster of a movie"
+				alt="Actor of a movie"
 			/>
 
 			<Card.Title>{actor.name}</Card.Title>
