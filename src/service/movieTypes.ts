@@ -54,6 +54,7 @@ export interface ASingleMovieResponse {
 	}[];
 	tagline: string;
 	title: string;
+	vote_average: number;
 	credits: {
 		cast: Cast[];
 		crew: Crew[];
@@ -77,4 +78,18 @@ export interface ASingleMovieResponse {
 	logo_path: string
 	name: string;
 	origin_country: string;
+  }
+
+  /** An Actor */
+  export interface ActorResponse {
+	name: string;
+	biography: string;
+	birthday: string;
+	deathday: string | null;
+	gender: number;
+	homepage: string | null;
+	id: number;
+	known_for_department: string;
+	place_of_birth: string;
+	profile_path: string;
   }

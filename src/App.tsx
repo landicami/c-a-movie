@@ -4,6 +4,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 //bootstrap components
 import Container from "react-bootstrap/Container"
 //Pages
+import ActorPage from './pages/ActorPage';
 import GenresPage from './pages/GenresPage';
 import HomePage from './pages/HomePage';
 import MovieDetailsPage from './pages/MovieDetailsPage';
@@ -38,6 +39,7 @@ function App() {
 						<Route path="/nowplaying" element={<NowPlayingPage />} />
 						<Route path="/genres" element={<GenresPage />} />
 						<Route path="/movies/:id" element={<MovieDetailsPage />}/>
+						<Route path="/actor/:id" element={<ActorPage />}/>
 
 						<Route path="*" element={<NotFoundPage />} />
 					</Routes>
