@@ -14,7 +14,7 @@ const MoviesCard: React.FC<MoviesCardProps> = ({ data }) => {
 		{data && data.map(movie =>
 		<Container key={movie.id} className='col-12 col-md-6 col-lg-3 mb-3 mt-3  '>
 		<Card>
-		<Card.Body>
+		<Card.Body className='no-spacer'>
 		<Link to={`/movies/${movie.id}`}>
 			<Card.Img
 				variant="top"

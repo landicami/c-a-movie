@@ -37,18 +37,18 @@ const DetailsCard: React.FC<ASingleMovieProps> = ({data}) => {
 		<Card className='d-flex justify-content-center rounded p-2'>
 			<Card.Body>
 				<div className='row'>
-					<div className='d-flex col-lg-4 col-sm-6'>
+					<div className='d-flex justify-content-between col-lg-4 col-sm-6'>
 						<Card.Img
-						className='picture-in-card'
-						src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`
-						}
+						className={data.poster_path ? 'picture-in-card' : ""}
+						src={data.poster_path ? `https://image.tmdb.org/t/p/w500/${data.poster_path}` : "/no-img.png"}
+
 						/>
 					</div>
-					<div className='col-lg-8 col-sm-6'>
-						<p className='text-start tagline mt-2 pt-3'>"{data.tagline}"</p>
-						<p className='text-start tagline-sm mt-2 pt-1'>Runtime: {formatRuntime(data.runtime)} </p>
-						<p className='text-start tagline-sm mt-2 pt-1'>Vote: {data.vote_average} </p>
-						<p className='text-start tagline-sm mt-2 pt-1'>Release date: {data.release_date} </p>
+					<div className='col-lg-6 col-sm-6'>
+						<p className='text-start tagline mt-2 pt-3'>"{data.tagline ? data.tagline : 'No tagline'}"</p>
+						<p className='text-start tagline-sm mt-2 pt-1'>Runtime: {data.runtime ? formatRuntime(data.runtime) : "No runtime"} </p>
+						<p className='text-start tagline-sm mt-2 pt-1'>Vote: {data.vote_average ? data.vote_average : "No vote"} </p>
+						<p className='text-start tagline-sm mt-2 pt-1'>Release date: {data.release_date ? data.release_date : "No info"} </p>
 
 					</div>
 				</div>
