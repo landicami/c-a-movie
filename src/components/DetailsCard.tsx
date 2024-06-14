@@ -37,14 +37,14 @@ const DetailsCard: React.FC<ASingleMovieProps> = ({data}) => {
 		<Card className='d-flex justify-content-center rounded p-2'>
 			<Card.Body>
 				<div className='row'>
-					<div className='d-flex col-lg-2 col-sm-4'>
+					<div className='d-flex col-lg-4 col-sm-6'>
 						<Card.Img
 						className='picture-in-card'
 						src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`
 						}
 						/>
 					</div>
-					<div className='col-lg-10 col-sm-8'>
+					<div className='col-lg-8 col-sm-6'>
 						<p className='text-start tagline mt-2 pt-3'>"{data.tagline}"</p>
 						<p className='text-start tagline-sm mt-2 pt-1'>Runtime: {formatRuntime(data.runtime)} </p>
 						<p className='text-start tagline-sm mt-2 pt-1'>Vote: {data.vote_average} </p>
@@ -74,22 +74,22 @@ const DetailsCard: React.FC<ASingleMovieProps> = ({data}) => {
 
 		<h2 className='mt-4'>Actors, scroll down to see more:</h2>
 		<div className='row rounded roling-div'>
-		{data.credits.cast.map(actor =>
-		<Card key={actor.id} className='col-lg-2 col-sm-6 mt-2'>
-		<Card.Body>
-			<div className='d-flex justify-content-center'>
-			<Card.Img
+			{data.credits.cast.map(actor =>
+			<Card key={actor.id} className='col-lg-2 col-sm-6 mt-2'>
+				<Card.Body>
+					<div className='d-flex justify-content-center'>
+					<Card.Img
 
-				className='picture-in-card-sm '
-				src={actor.profile_path ?`https://image.tmdb.org/t/p/w500/${actor.profile_path}` : "/no-img.png"}
-				alt="Actor of a movie"
-			/>
-			</div>
+						className='picture-in-card-sm '
+						src={actor.profile_path ?`https://image.tmdb.org/t/p/w500/${actor.profile_path}` : "/no-img.png"}
+						alt="Actor of a movie"
+					/>
+					</div>
 
-			<Link className="actor-link" to={"/actor/" + actor.id}><Card.Title className='mt-2'>{actor.name}</Card.Title></Link>
-			<Card.Text>as {actor.character}</Card.Text>
-		</Card.Body>
-		</Card>
+					<Link className="movie-link" to={"/actor/" + actor.id}><Card.Title className='mt-2'>{actor.name}</Card.Title></Link>
+					<Card.Text>as {actor.character}</Card.Text>
+				</Card.Body>
+			</Card>
 		)}
 		</div>
 

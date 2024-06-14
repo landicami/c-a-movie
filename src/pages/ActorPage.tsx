@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { getActor, getActorMovies } from '../service/movieAPi';
 
 const ActorPage = () => {
@@ -16,11 +16,15 @@ const ActorPage = () => {
 		queryFn: () => getActorMovies(actorId)
 	})
 
+	if(!movies){
+		return <p>No data available yet...</p>
+	}
+
   return (
 	<div className='p-2 border rounded mb-2 row '>
 		<h1 className='text-center'>{actor.data && actor.data?.name}</h1>
 
-		{movies.data?.cast.map(movie => <p>{movie.title}</p>)}
+		{movies.data?.cast.map(movie => <Link to={`/movies/${movie.id}`}><p key={movie.id}>{movie.title}</p></Link>)}
 
 
 
