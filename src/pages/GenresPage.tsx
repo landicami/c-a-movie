@@ -24,8 +24,8 @@ const GenresPage = () => {
 
   return (
     <>
-		<div className='p-2 border rounded mb-2'>
-			<h1>Choose movie by genre por favor</h1>
+		<div className='p-2 mb-2'>
+			<h1 className='text-center'>Choose movie by genre por favor</h1>
 
 		<Form.Select
 			aria-label="Select movie by genre"
@@ -41,8 +41,8 @@ const GenresPage = () => {
     	{genre && <h3 className="mt-4">Showing movies by {genre}</h3>}
 
 		{!genresFromApi.data && <p>No data available yet...</p>}
-		{/* {isLoading && <p>Loading...</p>} gör en global Loading*/}
-		{genresFromApi.isError && <p>{genresFromApi.error.message}</p>}
+		{genresFromApi.isError && <h2>Ops! An error occured: {genresFromApi.error.message}</h2>}
+
 		</div>
 
     </>
