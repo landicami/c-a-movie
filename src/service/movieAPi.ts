@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ASingleMovieResponse, ActorMovieResponse, ActorResponse, GenreResponse, MoviesResponse } from "./movieTypes";
+import { ASingleMovieResponse, ActorMovieResponse, ActorResponse, GenreMovieResponse, GenreResponse, MoviesResponse } from "./movieTypes";
 
 const BEARER = import.meta.env.VITE_MOVIE_BEARER_KEY
 
@@ -40,6 +40,12 @@ export const getTopRatedMovies = async () => {
 /** Get the genres */
 export const getGenres = async () => {
 	const data = await get<GenreResponse>("/genre/movie/list?&include_adult=false&language=en-US");
+	return data;
+}
+
+/** Get movies from a specific genre  */
+export const getMovieByGenre = async (genreId : number, page: number) => {
+	const data = await get<GenreMovieResponse>(`/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc&with_genres=${genreId}`);
 	return data;
 }
 

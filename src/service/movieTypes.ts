@@ -8,6 +8,13 @@ export interface GenreResponse {
 	genres: Genre[];
 }
 
+export interface GenreMovieResponse {
+	page: number;
+	results: Movies[];
+	totalt_pages: number;
+	totalt_results: number;
+}
+
 /** General MovieResponse */
 export interface MoviesResponse {
 	results: Movies[]
