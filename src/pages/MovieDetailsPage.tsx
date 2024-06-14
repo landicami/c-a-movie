@@ -13,15 +13,16 @@ const MovieDetailsPage = () => {
 
 	})
 
-	if(!aSingleMovie.data){
-		return <p>No data available...</p>
-	}
-
 	return (
 	<div className='p-2 mb-2 row '>
-		<DetailsCard
-		data={aSingleMovie.data} />
 
+	{aSingleMovie.isError && <h2>Ops! An error occured: {aSingleMovie.error.message}</h2>}
+
+		{aSingleMovie.data &&
+			<DetailsCard
+			data={aSingleMovie.data}
+			 />
+		}
 	</div>
   )
 }

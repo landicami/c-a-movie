@@ -8,9 +8,6 @@ const TopRatedPage = () => {
 		queryFn: getTopRatedMovies
 	});
 
-	if(!topRated.data){
-		return <p>No data available yet...</p>
-	}
 
   return (
 	<div className='p-2 mb-2 row '>
@@ -18,9 +15,11 @@ const TopRatedPage = () => {
 		{topRated.isError && <h2>Ops! An error occured: {topRated.error.message}</h2>}
 
 
+		{topRated.data &&
 		<MoviesCard
 		movies={topRated.data}
 		/>
+		}
 
 	</div>
   )

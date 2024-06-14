@@ -8,19 +8,17 @@ const TrendingPage = () => {
 		queryFn: getNowTrendingMovies
 	});
 
-	if(!nowTrending.data){
-		return <p>No data available yet...</p>
-	}
 
   return (
 	<div className='p-2 mb-2 row '>
 		<h1 className='text-center'>Showing trending movies</h1>
+		{nowTrending.isError && <h2>Ops! An error occured: {nowTrending.error.message}</h2>}
 
+		{nowTrending.data &&
 		<MoviesCard
 		movies={nowTrending.data}
 		/>
-
-		{nowTrending.isError && <p>{nowTrending.error.message}</p>}
+		}
 	</div>
   )
 }

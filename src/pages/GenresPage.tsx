@@ -40,7 +40,6 @@ const GenresPage = () => {
 
     	{genre && <h3 className="mt-4">Showing movies by {genre}</h3>}
 
-		{!genresFromApi.data && <p>No data available yet...</p>}
 		{genresFromApi.isError && <h2>Ops! An error occured: {genresFromApi.error.message}</h2>}
 
 		</div>

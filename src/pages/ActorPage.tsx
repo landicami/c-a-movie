@@ -16,16 +16,12 @@ const ActorPage = () => {
 		queryFn: () => getActorMovies(actorId)
 	})
 
-	if(!movies){
-		return <p>No data available yet...</p>
-	}
 
   return (
-	<div className='p-2 border rounded mb-2 row '>
+	<div className='p-2 row '>
 		<h1 className='text-center'>{actor.data && actor.data?.name}</h1>
-
-		{movies.data?.cast.map(movie => <Link to={`/movies/${movie.id}`}><p key={movie.id}>{movie.title}</p></Link>)}
-
+		{actor.isError && <h2>Ops! An error occured: {actor.error.message}</h2>}
+		{movies.isError && <h2>Ops! An error occured: {movies.error.message}</h2>}
 
 
 	</div>  )

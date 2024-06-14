@@ -8,19 +8,18 @@ const NowPlayingPage = () => {
 		queryFn: getNowPlayingMovies
 	});
 
-	if(!nowPlaying.data){
-		return <p>No data available yet...</p>
-	}
 
   return (
 	<div className='p-2 mb-2 row '>
 		<h1 className='text-center'>Showing now playing movies</h1>
+		{nowPlaying.isError && <h2>Ops! An error occured: {nowPlaying.error.message}</h2>}
 
+		{nowPlaying.data &&
 		<MoviesCard
 		movies={nowPlaying.data}
 		/>
+		}
 
-		{nowPlaying.isError && <p>{nowPlaying.error.message}</p>}
 	</div>
   )
 }
