@@ -1,24 +1,24 @@
 import React from 'react'
 import Card from "react-bootstrap/Card"
 import Container from "react-bootstrap/Container";
-import { MoviesResponse } from '../service/movieTypes'
+import { Movie } from '../service/movieTypes'
 import { Link } from 'react-router-dom';
 
 interface MoviesCardProps {
-	movies: MoviesResponse
+	data: Movie[]
 }
 
-const MoviesCard: React.FC<MoviesCardProps> = ({ movies }) => {
+const MoviesCard: React.FC<MoviesCardProps> = ({ data }) => {
 	return (
 		<>
-		{movies.results && movies.results.map(movie =>
-		<Container key={movie.id} className='col-12 col-md-6 col-lg-2 mb-3 mt-3  '>
+		{data && data.map(movie =>
+		<Container key={movie.id} className='col-12 col-md-6 col-lg-3 mb-3 mt-3  '>
 		<Card>
 		<Card.Body>
 		<Link to={`/movies/${movie.id}`}>
 			<Card.Img
 				variant="top"
-				src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+				src={movie.poster_path ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}` : "/no-img.png"}
 				alt="Poster of a movie"
 
 			/>

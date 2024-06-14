@@ -16,7 +16,7 @@ const TrendingPage = () => {
 
 		{nowTrending.data &&
 		<MoviesCard
-		movies={nowTrending.data}
+		data={nowTrending.data.results}
 		/>
 		}
 	</div>

@@ -16,7 +16,7 @@ const NowPlayingPage = () => {
 
 		{nowPlaying.data &&
 		<MoviesCard
-		movies={nowPlaying.data}
+		data={nowPlaying.data.results}
 		/>
 		}
 
