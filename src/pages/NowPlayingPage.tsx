@@ -13,7 +13,7 @@ const NowPlayingPage = () => {
 	}
 
   return (
-	<div className='p-2 border rounded mb-2 row '>
+	<div className='p-2 mb-2 row '>
 		<h1 className='text-center'>Showing now playing movies</h1>
 
 		<MoviesCard
