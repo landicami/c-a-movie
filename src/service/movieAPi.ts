@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ASingleMovieResponse, ActorResponse, GenreResponse, MoviesResponse, NowPlayingResponse } from "./movieTypes";
+import { ASingleMovieResponse, ActorResponse, GenreResponse, MoviesResponse } from "./movieTypes";
 
 const BEARER = import.meta.env.VITE_MOVIE_BEARER_KEY
 
@@ -20,7 +20,13 @@ const get = async <T>(endpoint: string) => {
 
 /** Get now playing */
 export const getNowPlayingMovies = async () => {
-	const data = await get<NowPlayingResponse>("/movie/now_playing?include_adult=false&language=en-US&page=1");
+	const data = await get<MoviesResponse>("/movie/now_playing?include_adult=false&language=en-US&page=1");
+	return data;
+}
+
+/** Get trending */
+export const getNowTrendingMovies = async () => {
+	const data = await get<MoviesResponse>("/trending/movie/week?include_adult=false&language=en-US");
 	return data;
 }
 

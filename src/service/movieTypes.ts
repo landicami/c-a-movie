@@ -8,8 +8,13 @@ export interface GenreResponse {
 	genres: Genre[];
 }
 
-/** Now playing */
-export interface NowPlayingResponse {
+// /** Now playing */
+// export interface NowPlayingResponse {
+// 	results: Movies[]
+// }
+
+/** General MovieResponse */
+export interface MoviesResponse {
 	results: Movies[]
 }
 

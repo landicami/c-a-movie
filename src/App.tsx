@@ -10,6 +10,8 @@ import HomePage from './pages/HomePage';
 import MovieDetailsPage from './pages/MovieDetailsPage';
 import NotFoundPage from './pages/NotFoundPage';
 import NowPlayingPage from './pages/NowPlayingPage';
+import TrendingPage from './pages/TrendingPage';
+
 //Components
 import Navigation from './components/Navigation';
 import GlobalLoading from './components/GlobalLoading';
@@ -37,6 +39,7 @@ function App() {
 					<Routes>
 						<Route path="/" element={<HomePage />} />
 						<Route path="/nowplaying" element={<NowPlayingPage />} />
+						<Route path="/trending" element={<TrendingPage />}/>
 						<Route path="/genres" element={<GenresPage />} />
 						<Route path="/movies/:id" element={<MovieDetailsPage />}/>
 						<Route path="/actor/:id" element={<ActorPage />}/>
