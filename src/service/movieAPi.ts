@@ -24,9 +24,16 @@ export const getNowPlayingMovies = async () => {
 	return data;
 }
 
-/** Get trending */
+/** Get trending by week */
 export const getNowTrendingMovies = async () => {
-	const data = await get<MoviesResponse>("/trending/movie/week?include_adult=false&language=en-US");
+	const data = await get<MoviesResponse>("/trending/movie/week?include_adult=false&language=en-US&page=1");
+	return data;
+}
+
+/** Get toprated movies */
+
+export const getTopRatedMovies = async () => {
+	const data = await get<MoviesResponse>("/movie/top_rated?include_adult=false&language=en-US&page=1");
 	return data;
 }
 
@@ -51,6 +58,6 @@ export const getActor = async (actorId: number) => {
 
 /** Get the moviecredits for actor */
 export const getActorMovies = async(actorId: number) => {
-	const data = await get<MoviesResponse>(`https://api.themoviedb.org/3/person/${actorId}/movie_credits?language=en-US&include_adult=false`);
+	const data = await get<MoviesResponse>(`/person/${actorId}/movie_credits?&include_adult=false&language=en-US`);
 	return data;
 }

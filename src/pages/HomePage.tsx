@@ -15,7 +15,7 @@ const HomePage = () => {
 
 			<Link to={"/nowplaying"} className='btn btn-secondary m-1' role='button'>Now playing</Link>
 			<Link to={"/trending"} className='btn btn-secondary m-1' role='button'>Trending</Link>
-			<Link to={"/genres"} className='btn btn-secondary m-1' role='button'>Top Rated</Link>
+			<Link to={"/toprated"} className='btn btn-secondary m-1' role='button'>Top Rated</Link>
 			<Link to={"/genres"} className='btn btn-secondary m-1' role='button'>By genre</Link>
 
 

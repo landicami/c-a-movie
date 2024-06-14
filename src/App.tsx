@@ -20,6 +20,7 @@ import clsx from 'clsx';
 import '../src/assets/App.scss';
 //Hooks
 import useTheme from './hooks/useTheme';
+import TopRatedPage from './pages/TopRatedPage';
 
 function App() {
 	const {isAnotherStyle} = useTheme();
@@ -39,7 +40,8 @@ function App() {
 					<Routes>
 						<Route path="/" element={<HomePage />} />
 						<Route path="/nowplaying" element={<NowPlayingPage />} />
-						<Route path="/trending" element={<TrendingPage />}/>
+						<Route path="/trending" element={<TrendingPage />} />
+						<Route path="/toprated" element={<TopRatedPage />} />
 						<Route path="/genres" element={<GenresPage />} />
 						<Route path="/movies/:id" element={<MovieDetailsPage />}/>
 						<Route path="/actor/:id" element={<ActorPage />}/>
