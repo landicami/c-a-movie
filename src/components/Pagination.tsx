@@ -5,14 +5,12 @@ interface PaginationProps{
 	hasNextPage: boolean
 	hasPreviousPage: boolean;
 	page: number
-	totalPages: number
 	onNextPage: () => void;
 	onPreviousPage: () => void;
 }
 
 const Pagination: React.FC<PaginationProps> = ({
 	page,
-	totalPages,
 	hasPreviousPage,
 	hasNextPage,
 	onNextPage,
