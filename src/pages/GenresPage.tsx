@@ -2,17 +2,21 @@ import { useState, useEffect } from 'react';
 import { getGenres, getMovieByGenre } from '../service/movieAPi';
 import { useQuery } from '@tanstack/react-query';
 import Form from "react-bootstrap/Form";
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import MoviesCard from '../components/MoviesCard';
+import Pagination from '../components/Pagination';
 
 const GenresPage = () => {
 	const [searchParams, setSearchParams] = useSearchParams();
 	const pageParams = Number(searchParams.get("page")) || 1;
 
+	const { id } = useParams();
+  	const genrefromParams = id;
 
-	const [genreId, setGenreId] = useState(() => {
-    	return localStorage.getItem('selectedGenre') || "";
-	});
+	const navigate = useNavigate();
+
+	const [genreId, setGenreId] = useState(genrefromParams || "");
+
 
 	const genresFromApi = useQuery({
 		queryKey: ['genres'],
@@ -21,12 +25,25 @@ const GenresPage = () => {
 
 	const moviesByGenre = useQuery({
 		queryKey: ["moviesByGenre", {genreId, pageParams} ],
-		queryFn: () => getMovieByGenre(Number(genreId), pageParams)
-  	})
+		queryFn: () => getMovieByGenre(Number(genreId), pageParams),
+		enabled: !!genreId
+	});
+
+	const handleGenreChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+		const newGenreId = e.target.value;
+		setGenreId(newGenreId);
+		navigate(`/genres/${newGenreId}`);
+		setSearchParams({page: "1"})
+	};
 
 	useEffect(() => {
-    	localStorage.setItem('selectedGenre', genreId);
-  	}, [genreId]);
+	if (genrefromParams) {
+		setGenreId(genrefromParams);
+	}
+	}, [genrefromParams]);
+
+	console.log(moviesByGenre.data?.total_pages);
+
 
   return (
     <>
@@ -35,7 +52,7 @@ const GenresPage = () => {
 
 		<Form.Select
 			aria-label="Select movie by genre"
-			onChange={e => setGenreId(e.target.value)}
+			onChange={handleGenreChange}
 			value={genreId}
 		>
 			<option value="">Select a genre</option>
@@ -49,13 +66,23 @@ const GenresPage = () => {
 		{moviesByGenre.isError && <h2 className='pt-2'>Ops! An error occured: {moviesByGenre.error.message}</h2>}
 		{genreId && <h3 className="mt-4">Showing movies by {genresFromApi.data?.genres.find(genre => genre.id === Number(genreId))?.name}</h3>}
 
-
-		<div className='row'>
 		{moviesByGenre.data &&
-		<MoviesCard
-		data={moviesByGenre.data.results}
+		<Pagination
+		page={pageParams}
+		totalPages={moviesByGenre.data.total_pages}
+		hasNextPage={pageParams === 500}
+		hasPreviousPage={pageParams === 1 }
+		onNextPage={() => setSearchParams({page: (pageParams + 1).toString()} )}
+		onPreviousPage={() => setSearchParams({ page: (pageParams - 1).toString()})}
 		/>
 		}
+
+		<div className='row'>
+			{moviesByGenre.data &&
+			<MoviesCard
+			data={moviesByGenre.data.results}
+			/>
+			}
 		</div>
 
 		</div>
