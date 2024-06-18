@@ -42,9 +42,6 @@ const ActorPage = () => {
 			}
 		</div>
 
-
-
-
 	</div>
 	)
 }
