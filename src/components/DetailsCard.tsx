@@ -37,14 +37,14 @@ const DetailsCard: React.FC<ASingleMovieProps> = ({data}) => {
 		<Card className='d-flex justify-content-center rounded p-2'>
 			<Card.Body>
 				<div className='row'>
-					<div className='d-flex justify-content-between col-lg-4 col-sm-6'>
+					<div className='d-flex justify-content-between col-lg-4 col-md-6 col-sm-12'>
 						<Card.Img
 						className={data.poster_path ? 'picture-in-card' : ""}
 						src={data.poster_path ? `https://image.tmdb.org/t/p/w500/${data.poster_path}` : "/no-img.png"}
 
 						/>
 					</div>
-					<div className='col-lg-6 col-sm-6'>
+					<div className='col-lg-6 col-md-6 col-sm-12'>
 						<p className='text-start tagline mt-2 pt-3'>"{data.tagline ? data.tagline : 'No tagline'}"</p>
 						<p className='text-start tagline-sm mt-2 pt-1'>Runtime: {data.runtime ? formatRuntime(data.runtime) : "No runtime"} </p>
 						<p className='text-start tagline-sm mt-2 pt-1'>Vote: {data.vote_average ? data.vote_average : "No vote"} </p>
@@ -60,7 +60,10 @@ const DetailsCard: React.FC<ASingleMovieProps> = ({data}) => {
 
 			<ListGroup className="list-group-flush">
 
-				<ListGroup.Item><strong>Genres:</strong>  {data.genres.map(genre => genre.name).join(", ")}</ListGroup.Item>
+				<ListGroup.Item><strong>Genres: </strong>
+				{data.genres.map(genre =>
+					<Link key={genre.id} to={"/genres/" + genre.id} role="button" className='btn btn-sm btn-outline-secondary me-1'>{genre.name}</Link>)}
+				</ListGroup.Item>
 				<ListGroup.Item><Link to={data.homepage}>Homepage</Link></ListGroup.Item>
 				<ListGroup.Item><strong>Original title:</strong> {data.original_title}</ListGroup.Item>
 				<ListGroup.Item><strong>Spoken languages:</strong> {data.spoken_languages.map(language => language.english_name).join(", ")}</ListGroup.Item>
