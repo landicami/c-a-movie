@@ -1,5 +1,3 @@
-import React from 'react'
-
 const AboutPage = () => {
   return (
 	<div className='cinema-short col-8 d-flex justify-content-center mt-4 p-4 border'>
