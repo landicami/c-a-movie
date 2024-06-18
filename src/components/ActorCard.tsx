@@ -16,7 +16,7 @@ const ActorCard:React.FC<ActorProps> = ({actor}) => {
 			<Card.Body>
 				<div className='row'>
 
-					<div className='d-flex col-lg-4 col-sm-6'>
+					<div className='d-flex col-lg-4 col-md-6 col-sm-12'>
 
 						<Card.Img
 						className='picture-in-card'
@@ -24,7 +24,7 @@ const ActorCard:React.FC<ActorProps> = ({actor}) => {
 
 						/>
 					</div>
-					<div className='col-lg-8 col-sm-6'>
+					<div className='col-lg-8 col-md-6 col-sm-12'>
 					<Card.Title>{actor.name}</Card.Title>
 					</div>
 
