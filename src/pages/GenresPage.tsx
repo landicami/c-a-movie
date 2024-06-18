@@ -65,6 +65,7 @@ const GenresPage = () => {
 
 		{moviesByGenre.data &&
 		<Pagination
+		totalpages={moviesByGenre.data.total_pages > 500 ? 500 : moviesByGenre.data.total_pages}
 		page={pageParams}
 		hasNextPage={pageParams === 500}
 		hasPreviousPage={pageParams === 1 }

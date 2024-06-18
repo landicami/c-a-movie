@@ -5,12 +5,14 @@ interface PaginationProps{
 	hasNextPage: boolean
 	hasPreviousPage: boolean;
 	page: number
+	totalpages: number
 	onNextPage: () => void;
 	onPreviousPage: () => void;
 }
 
 const Pagination: React.FC<PaginationProps> = ({
 	page,
+	totalpages,
 	hasPreviousPage,
 	hasNextPage,
 	onNextPage,
@@ -31,7 +33,7 @@ const Pagination: React.FC<PaginationProps> = ({
 				</div>
 				<div className='mb-0 p-2 rounded'>
 					<p className='m-0'>
-						{page} of {500}
+						{page} of {totalpages}
 					</p>
 				</div>
 				<div>
