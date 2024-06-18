@@ -62,7 +62,7 @@ const DetailsCard: React.FC<ASingleMovieProps> = ({data}) => {
 
 				<ListGroup.Item><strong>Genres: </strong>
 				{data.genres.map(genre =>
-					<Link key={genre.id} to={"/genres/" + genre.id} role="button" className='btn btn-sm btn-outline-secondary me-1'>{genre.name}</Link>)}
+					<Link key={genre.id} to={"/genres/?page=1&genre=" + genre.id} role="button" className='btn btn-sm btn-outline-secondary me-1'>{genre.name}</Link>)}
 				</ListGroup.Item>
 				<ListGroup.Item><Link to={data.homepage}>Homepage</Link></ListGroup.Item>
 				<ListGroup.Item><strong>Original title:</strong> {data.original_title}</ListGroup.Item>
