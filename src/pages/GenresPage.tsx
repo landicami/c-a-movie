@@ -2,20 +2,19 @@ import { useState, useEffect } from 'react';
 import { getGenres, getMovieByGenre } from '../service/movieAPi';
 import { useQuery } from '@tanstack/react-query';
 import Form from "react-bootstrap/Form";
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import MoviesCard from '../components/MoviesCard';
 import Pagination from '../components/Pagination';
 
 const GenresPage = () => {
 	const [searchParams, setSearchParams] = useSearchParams();
 	const pageParams = Number(searchParams.get("page")) || 1;
+	const genreUrlParams = searchParams.get("genre");
 
 	const { id } = useParams();
-  	const genrefromParams = id;
+  	const genreIdfromParams = id;
 
-	const navigate = useNavigate();
-
-	const [genreId, setGenreId] = useState(genrefromParams || "");
+	const [genreId, setGenreId] = useState(genreIdfromParams || genreUrlParams || "");
 
 
 	const genresFromApi = useQuery({
@@ -32,17 +31,15 @@ const GenresPage = () => {
 	const handleGenreChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		const newGenreId = e.target.value;
 		setGenreId(newGenreId);
-		navigate(`/genres/${newGenreId}`);
-		setSearchParams({page: "1"})
+		setSearchParams({page: "1", genre: newGenreId})
 	};
 
 	useEffect(() => {
-	if (genrefromParams) {
-		setGenreId(genrefromParams);
+	if (genreIdfromParams) {
+		setGenreId(genreIdfromParams);
 	}
-	}, [genrefromParams]);
+	}, [genreIdfromParams]);
 
-	console.log(moviesByGenre.data?.total_pages);
 
 
   return (
@@ -69,11 +66,10 @@ const GenresPage = () => {
 		{moviesByGenre.data &&
 		<Pagination
 		page={pageParams}
-		totalPages={moviesByGenre.data.total_pages}
 		hasNextPage={pageParams === 500}
 		hasPreviousPage={pageParams === 1 }
-		onNextPage={() => setSearchParams({page: (pageParams + 1).toString()} )}
-		onPreviousPage={() => setSearchParams({ page: (pageParams - 1).toString()})}
+		onNextPage={() => setSearchParams({page: (pageParams + 1).toString(), genre: genreUrlParams || ""} )}
+		onPreviousPage={() => setSearchParams({page: (pageParams - 1).toString(), genre: genreUrlParams || ""})}
 		/>
 		}
 
