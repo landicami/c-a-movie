@@ -4,6 +4,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 //bootstrap components
 import Container from "react-bootstrap/Container"
 //Pages
+import AboutPage from './pages/AboutPage';
 import ActorPage from './pages/ActorPage';
 import GenresPage from './pages/GenresPage';
 import HomePage from './pages/HomePage';
@@ -11,6 +12,8 @@ import MovieDetailsPage from './pages/MovieDetailsPage';
 import NotFoundPage from './pages/NotFoundPage';
 import NowPlayingPage from './pages/NowPlayingPage';
 import TrendingPage from './pages/TrendingPage';
+import TopRatedPage from './pages/TopRatedPage';
+
 
 //Components
 import Navigation from './components/Navigation';
@@ -20,7 +23,7 @@ import clsx from 'clsx';
 import '../src/assets/App.scss';
 //Hooks
 import useTheme from './hooks/useTheme';
-import TopRatedPage from './pages/TopRatedPage';
+
 
 function App() {
 	const {isAnotherStyle} = useTheme();
@@ -45,6 +48,8 @@ function App() {
 						<Route path="/genres" element={<GenresPage />} />
 						<Route path="/movies/:id" element={<MovieDetailsPage />}/>
 						<Route path="/actor/:id" element={<ActorPage />}/>
+						<Route path="/genres/:id" element={<GenresPage />} />
+						<Route path="/about" element={<AboutPage/>} />
 
 						<Route path="*" element={<NotFoundPage />} />
 					</Routes>
