@@ -23,6 +23,8 @@ const Navigation = () => {
 
 
 							<Nav.Link as={NavLink} end to="/genres">Genres</Nav.Link>
+							<Nav.Link as={NavLink} end to="/about">About me</Nav.Link>
+
 
 							<Button variant="outline-dark" onClick={toggleTheme}>
 								{isAnotherStyle ? "💡" : "🍿"}
