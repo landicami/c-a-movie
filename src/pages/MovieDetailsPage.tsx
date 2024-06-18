@@ -10,7 +10,6 @@ const MovieDetailsPage = () => {
 	const aSingleMovie = useQuery({
 		queryKey: ["movie", {id: movieId}],
 		queryFn: () => getASingleMovie(movieId)
-
 	})
 
 	return (
