@@ -11,8 +11,8 @@ export interface GenreResponse {
 export interface GenreMovieResponse {
 	page: number;
 	results: Movies[];
-	totalt_pages: number;
-	totalt_results: number;
+	total_pages: number;
+	total_results: number;
 }
 
 /** General MovieResponse */
