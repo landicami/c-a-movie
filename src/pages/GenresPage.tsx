@@ -62,6 +62,8 @@ const GenresPage = () => {
 		{genresFromApi.isError && <h2 className='pt-2'>Ops! An error occured: {genresFromApi.error.message}</h2>}
 		{moviesByGenre.isError && <h2 className='pt-2'>Ops! An error occured: {moviesByGenre.error.message}</h2>}
 		{genreId && <h3 className="mt-4">Showing movies by {genresFromApi.data?.genres.find(genre => genre.id === Number(genreId))?.name}</h3>}
+		{moviesByGenre.data && <p className='text-center'>{moviesByGenre.data.total_results} movies</p>}
+
 
 		{moviesByGenre.data &&
 		<Pagination
