@@ -1,12 +1,8 @@
-import { useQuery } from '@tanstack/react-query';
-import { getTopRatedMovies } from '../service/movieAPi';
 import MoviesCard from '../components/MoviesCard';
+import useTopRated from '../hooks/useTopRated';
 
 const TopRatedPage = () => {
-	const topRated = useQuery({
-		queryKey: ["topRated"],
-		queryFn: getTopRatedMovies
-	});
+	const topRated = useTopRated();
 
 
   return (
