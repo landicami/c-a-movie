@@ -4,7 +4,8 @@ import { getASingleMovie } from '../service/movieAPi'
 const useAMovie = (movieId: number) => {
   return useQuery({
 	queryKey: ["movie", {id: movieId}],
-	queryFn: () => getASingleMovie(movieId)
+	queryFn: () => getASingleMovie(movieId),
+	enabled: !!movieId
 })
 }
 

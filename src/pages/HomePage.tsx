@@ -3,6 +3,9 @@ import SearchForm from "../components/SearchForm";
 import useSearchMovies from "../hooks/useSearchMovies";
 import MoviesCard from "../components/MoviesCard";
 import Pagination from "../components/Pagination";
+import useAMovie from "../hooks/useAMovie";
+import Card from 'react-bootstrap/Card';
+
 
 const HomePage = () => {
 	const [searchParams, setSearchParams ] = useSearchParams();
@@ -17,13 +20,15 @@ const HomePage = () => {
 
 	const searchResponse = useSearchMovies(searchParamsQuery, pageParams)
 
+	const movie = localStorage.getItem("historyMovies") || "";
+	const showLastMovie = movie ? JSON.parse(movie) : "";
+
+	const latestMovie = useAMovie(showLastMovie);
 
   return (
     <>
 	<div className="d-flex justify-content-center">
 		<div className="text-center">
-			<h1 className="m-4">Welcome</h1>
-
 			<div className="p-4 border rounded mb-2 col-lg-12 col-sm-12 cinema-short mb-4">
 			<h2 className="text-center">Find ze code for your favorite movie</h2>
 				<Link to={"/nowplaying"} className='btn btn-secondary m-1' role='button'>Now playing</Link>
@@ -65,6 +70,24 @@ const HomePage = () => {
 				No movies on that search, try againg!
 			</p>
 		}
+
+		{latestMovie.data &&
+		<>
+			<h4>Movies you have visited:</h4>
+			<div className="col-4">
+
+			<Card>
+				<Card.Body>
+					<Card.Title>
+						<Link className="movie-link" to={"movies/" + latestMovie.data.id}>{latestMovie.data.title}</Link>
+					</Card.Title>
+				</Card.Body>
+			</Card>
+		</div>
+		</>
+		}
+
+
 	</div>
 
 

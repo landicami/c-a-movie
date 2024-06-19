@@ -3,6 +3,7 @@ import DetailsCard from '../components/DetailsCard';
 import useAMovie from '../hooks/useAMovie';
 import MoviesCard from '../components/MoviesCard';
 import useSimilar from '../hooks/useSimilar';
+import { useEffect } from 'react';
 
 const MovieDetailsPage = () => {
 	const {id} = useParams();
@@ -11,6 +12,19 @@ const MovieDetailsPage = () => {
 	const aSingleMovie = useAMovie(movieId);
 
 	const similarMovies = useSimilar(movieId);
+
+
+	const updateLocalStorage = (movieId: number) => {
+		localStorage.setItem("historyMovies", JSON.stringify(movieId || ""))
+	}
+
+	useEffect(() => {
+		if(aSingleMovie.data){
+		updateLocalStorage(aSingleMovie.data.id)
+	}
+	}, [aSingleMovie.data]);
+
+
 
 	return (
 	<div className='p-2 mb-2 row '>
