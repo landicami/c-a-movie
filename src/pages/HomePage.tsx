@@ -1,4 +1,3 @@
-
 import { Link, useSearchParams } from "react-router-dom";
 import SearchForm from "../components/SearchForm";
 import useSearchMovies from "../hooks/useSearchMovies";
@@ -11,11 +10,13 @@ const HomePage = () => {
 	const searchParamsQuery = searchParams.get("query") || "";
 	const pageParams = Number(searchParams.get("page")) || 1;
 
+
 	const searchMovieBase = async (search: string) => {
 		setSearchParams({ query: search.trim(), page: "1"})
 	}
 
 	const searchResponse = useSearchMovies(searchParamsQuery, pageParams)
+
 
   return (
     <>
@@ -49,21 +50,23 @@ const HomePage = () => {
 		/>
 	}
 
-	<div className="row">{searchResponse.data && <>
+	<div className="row">
+		{searchResponse.data && <>
 		<p>You searched for "{searchParamsQuery}"" and got {searchResponse.data.total_results} hits.</p>
 
 			<MoviesCard
 			data={searchResponse.data.results}
 			/>
 		</>
-	}
-	{searchResponse.data?.results.length === 0 &&
-		<p>
-			No movies on that search, try againg!
-		</p>}
+		}
 
-
+		{searchResponse.data?.results.length === 0 &&
+			<p>
+				No movies on that search, try againg!
+			</p>
+		}
 	</div>
+
 
 	</>
   );
