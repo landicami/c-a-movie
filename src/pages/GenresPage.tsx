@@ -56,14 +56,17 @@ const GenresPage = () => {
 
 
 		{moviesByGenre.data &&
-		<Pagination
-		totalpages={moviesByGenre.data.total_pages > 500 ? 500 : moviesByGenre.data.total_pages}
-		page={pageParams}
-		hasNextPage={pageParams === 500}
-		hasPreviousPage={pageParams === 1 }
-		onNextPage={() => setSearchParams({page: (pageParams + 1).toString(), genre: genreUrlParams || ""} )}
-		onPreviousPage={() => setSearchParams({page: (pageParams - 1).toString(), genre: genreUrlParams || ""})}
-		/>
+			<Pagination
+			totalpages={moviesByGenre.data.total_pages > 500 ? 500 : moviesByGenre.data.total_pages}
+			page={pageParams}
+			hasNextPage={
+				moviesByGenre.data.total_pages > 500
+				? pageParams === 500
+				: pageParams === moviesByGenre.data.total_pages}
+			hasPreviousPage={pageParams === 1 }
+			onNextPage={() => setSearchParams({page: (pageParams + 1).toString(), genre: genreUrlParams || ""} )}
+			onPreviousPage={() => setSearchParams({page: (pageParams - 1).toString(), genre: genreUrlParams || ""})}
+			/>
 		}
 
 		<div className='row'>
