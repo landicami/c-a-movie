@@ -63,7 +63,13 @@ export const getActor = async (actorId: number) => {
 }
 
 /** Get the moviecredits for actor */
-export const getActorMovies = async(actorId: number) => {
+export const getActorMovies = async (actorId: number) => {
 	const data = await get<ActorMovieResponse>(`/person/${actorId}/movie_credits?&include_adult=false&language=en-US`);
+	return data;
+}
+
+/** Search for movies */
+export const searchMovies = async (query: string, page: number) => {
+	const data = await get<MoviesResponse>(`search/movie?query=${query}&include_adult=false&language=en-US&page=${page}`);
 	return data;
 }
