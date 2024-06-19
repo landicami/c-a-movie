@@ -25,8 +25,8 @@ export const getNowPlayingMovies = async () => {
 }
 
 /** Get trending by week */
-export const getNowTrendingMovies = async () => {
-	const data = await get<MoviesResponse>("/trending/movie/week?include_adult=false&language=en-US&page=1");
+export const getNowTrendingMovies = async (trending: string) => {
+	const data = await get<MoviesResponse>(`/trending/movie/${trending}?include_adult=false&language=en-US&page=1`);
 	return data;
 }
 

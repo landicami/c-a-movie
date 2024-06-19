@@ -1,10 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import { getNowTrendingMovies } from '../service/movieAPi';
 
-const useTrending = () => {
+const useTrending = (trending: string) => {
   return useQuery({
-	queryKey: ["nowTrending"],
-	queryFn: getNowTrendingMovies
+	queryKey: ["nowTrending", trending],
+	queryFn: () => getNowTrendingMovies(trending),
+	enabled: !!trending
 });
 }
 
