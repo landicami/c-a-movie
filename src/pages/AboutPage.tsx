@@ -8,7 +8,7 @@ const AboutPage = () => {
 			<div>
 				<p>
 					Im using the api from <a className="movie-link" href="https://developer.themoviedb.org/">here</a> with bearer key.
-					I only use 500 results in pagination due to <a className="movie-link" href="https://www.themoviedb.org/talk/61bbb4dc6a300b00977d906c">this info</a>.
+					I only use up to 500 results in pagination due to <a className="movie-link" href="https://www.themoviedb.org/talk/61bbb4dc6a300b00977d906c">this info</a>.
 				</p>
 					<hr/>
 					<a className="movie-link" href="https://github.com/landicami">Visit my github! </a>
