@@ -1,16 +1,12 @@
-import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom'
-import { getASingleMovie } from '../service/movieAPi';
 import DetailsCard from '../components/DetailsCard';
+import useAMovie from '../hooks/useAMovie';
 
 const MovieDetailsPage = () => {
 	const {id} = useParams();
 	const movieId = Number(id);
 
-	const aSingleMovie = useQuery({
-		queryKey: ["movie", {id: movieId}],
-		queryFn: () => getASingleMovie(movieId)
-	})
+	const aSingleMovie = useAMovie(movieId);
 
 	return (
 	<div className='p-2 mb-2 row '>
