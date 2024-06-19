@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import { getGenres, getMovieByGenre } from '../service/movieAPi';
-import { useQuery } from '@tanstack/react-query';
 import Form from "react-bootstrap/Form";
 import { useParams, useSearchParams } from 'react-router-dom';
 import MoviesCard from '../components/MoviesCard';
 import Pagination from '../components/Pagination';
+import useGenresFromApi from '../hooks/useGenresFromApi';
+import useGenreMovies from '../hooks/useGenreMovies';
 
 const GenresPage = () => {
 	const [searchParams, setSearchParams] = useSearchParams();
@@ -16,17 +16,9 @@ const GenresPage = () => {
 
 	const [genreId, setGenreId] = useState(genreIdfromParams || genreUrlParams || "");
 
+	const genresFromApi = useGenresFromApi();
 
-	const genresFromApi = useQuery({
-		queryKey: ['genres'],
-		queryFn: getGenres,
-	});
-
-	const moviesByGenre = useQuery({
-		queryKey: ["moviesByGenre", {genreId, pageParams} ],
-		queryFn: () => getMovieByGenre(Number(genreId), pageParams),
-		enabled: !!genreId
-	});
+	const moviesByGenre = useGenreMovies(genreId, pageParams)
 
 	const handleGenreChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		const newGenreId = e.target.value;
@@ -39,8 +31,6 @@ const GenresPage = () => {
 		setGenreId(genreIdfromParams);
 	}
 	}, [genreIdfromParams]);
-
-
 
   return (
     <>
