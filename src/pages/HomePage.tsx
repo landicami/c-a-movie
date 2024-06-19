@@ -52,7 +52,7 @@ const HomePage = () => {
 
 	<div className="row">
 		{searchResponse.data && <>
-		<p>You searched for "{searchParamsQuery}"" and got {searchResponse.data.total_results} hits.</p>
+		<p>You searched for "{searchParamsQuery}" and got {searchResponse.data.total_results} hits.</p>
 
 			<MoviesCard
 			data={searchResponse.data.results}
