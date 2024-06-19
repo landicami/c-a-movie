@@ -1,12 +1,8 @@
-import { useQuery } from '@tanstack/react-query'
-import { getNowPlayingMovies } from '../service/movieAPi'
 import MoviesCard from '../components/MoviesCard';
+import useNowPlaying from '../hooks/useNowPlaying';
 
 const NowPlayingPage = () => {
-	const nowPlaying = useQuery({
-		queryKey: ["nowPlaying"],
-		queryFn: getNowPlayingMovies
-	});
+	const nowPlaying = useNowPlaying();
 
 
   return (
@@ -16,9 +12,9 @@ const NowPlayingPage = () => {
 		{nowPlaying.isError && <h2>Ops! An error occured: {nowPlaying.error.message}</h2>}
 
 		{nowPlaying.data &&
-		<MoviesCard
-		data={nowPlaying.data.results}
-		/>
+			<MoviesCard
+			data={nowPlaying.data.results}
+			/>
 		}
 
 	</div>
