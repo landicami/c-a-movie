@@ -1,12 +1,8 @@
-import { useQuery } from '@tanstack/react-query'
-import { getNowTrendingMovies } from '../service/movieAPi'
 import MoviesCard from '../components/MoviesCard';
+import useTrending from '../hooks/useTrending';
 
 const TrendingPage = () => {
-	const nowTrending = useQuery({
-		queryKey: ["nowTrending"],
-		queryFn: getNowTrendingMovies
-	});
+	const nowTrending = useTrending();
 
 
   return (
