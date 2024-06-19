@@ -46,9 +46,11 @@ function App() {
 						<Route path="/trending" element={<TrendingPage />} />
 						<Route path="/toprated" element={<TopRatedPage />} />
 						<Route path="/genres" element={<GenresPage />} />
+						<Route path="/genres/?page=1&genre=:id" element={<GenresPage />} />
+
 						<Route path="/movies/:id" element={<MovieDetailsPage />}/>
 						<Route path="/actor/:id" element={<ActorPage />}/>
-						<Route path="/genres/?page=1&genre=:id" element={<GenresPage />} />
+
 						<Route path="/about" element={<AboutPage/>} />
 
 						<Route path="*" element={<NotFoundPage />} />
