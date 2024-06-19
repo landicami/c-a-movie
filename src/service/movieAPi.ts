@@ -73,3 +73,9 @@ export const searchMovies = async (query: string, page: number) => {
 	const data = await get<MoviesResponse>(`search/movie?query=${query}&include_adult=false&language=en-US&page=${page}`);
 	return data;
 }
+
+/** Get similar movies */
+export const getSimilarMovies = async (movieId: number) => {
+	const data = await get<MoviesResponse>(`/movie/${movieId}/similar?language=en-US&page=1&include_adult=false`);
+	return data;
+}
