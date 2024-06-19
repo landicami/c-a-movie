@@ -13,9 +13,9 @@ const TrendingPage = () => {
 		{nowTrending.isError && <h2>Ops! An error occured: {nowTrending.error.message}</h2>}
 
 		{nowTrending.data &&
-		<MoviesCard
-		data={nowTrending.data.results}
-		/>
+			<MoviesCard
+			data={nowTrending.data.results}
+			/>
 		}
 	</div>
   )
