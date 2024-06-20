@@ -4,7 +4,6 @@ import useNowPlaying from '../hooks/useNowPlaying';
 const NowPlayingPage = () => {
 	const nowPlaying = useNowPlaying();
 
-
   return (
 	<div className='p-2 mb-2 row '>
 		<h1 className='text-center'>Showing now playing movies</h1>
