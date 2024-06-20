@@ -14,9 +14,9 @@ const TopRatedPage = () => {
 
 
 		{topRated.data &&
-		<MoviesCard
-		data={topRated.data.results}
-		/>
+			<MoviesCard
+			data={topRated.data.results}
+			/>
 		}
 
 	</div>
