@@ -3,9 +3,13 @@ import SearchForm from "../components/SearchForm";
 import useSearchMovies from "../hooks/useSearchMovies";
 import MoviesCard from "../components/MoviesCard";
 import Pagination from "../components/Pagination";
-import useAMovie from "../hooks/useAMovie";
-import Card from 'react-bootstrap/Card';
+import { useEffect, useState } from "react";
+import ListGroup  from "react-bootstrap/ListGroup";
 
+interface MovieObject {
+	id: number;
+	title: string;
+  }
 
 const HomePage = () => {
 	const [searchParams, setSearchParams ] = useSearchParams();
@@ -20,10 +24,12 @@ const HomePage = () => {
 
 	const searchResponse = useSearchMovies(searchParamsQuery, pageParams)
 
-	const movie = localStorage.getItem("historyMovies") || "";
-	const showLastMovie = movie ? JSON.parse(movie) : "";
+	const [movieHistory, setMovieHistory] = useState<MovieObject[]>([]);
 
-	const latestMovie = useAMovie(showLastMovie);
+	useEffect(() => {
+		const storedMovies = JSON.parse(localStorage.getItem('historyMovies') || '[]');
+		setMovieHistory(storedMovies);
+	  }, []);
 
   return (
     <>
@@ -71,18 +77,19 @@ const HomePage = () => {
 			</p>
 		}
 
-		{latestMovie.data &&
+		{movieHistory &&
 		<>
 			<h4>Movies you have visited:</h4>
-			<div className="col-4">
+			<div className="row">
 
-			<Card>
-				<Card.Body>
-					<Card.Title>
-						<Link className="movie-link" to={"movies/" + latestMovie.data.id}>{latestMovie.data.title}</Link>
-					</Card.Title>
-				</Card.Body>
-			</Card>
+			{movieHistory.map(movie =>
+			<div className="col-8" key={movie.id}>
+				<ListGroup>
+						<ListGroup.Item><Link className="movie-link" to={"movies/" + movie.id}>{movie.title}</Link></ListGroup.Item>
+				</ListGroup>
+			</div>
+			)
+			}
 		</div>
 		</>
 		}
