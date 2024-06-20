@@ -25,21 +25,13 @@ const TrendingPage = () => {
 			<Button
 				variant='secondary'
 				className='me-2'
-				onClick={() => {
-					handleTrendClick("week");
-					nowTrending.refetch();
-				}
-			}
+				onClick={() => handleTrendClick("week")}
 			>
 				By week
 			</Button>
 			<Button
 				variant="secondary"
-				onClick={() => {
-					handleTrendClick("day");
-					nowTrending.refetch();
-				}
-			}
+				onClick={() => handleTrendClick("day")}
 			>
 				By day
 			</Button>
