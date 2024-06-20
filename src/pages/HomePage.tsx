@@ -77,7 +77,7 @@ const HomePage = () => {
 			</p>
 		}
 
-		{movieHistory &&
+		{movieHistory.length > 0 &&
 		<>
 			<h4>Movies you have visited:</h4>
 			<div className="row">
