@@ -12,7 +12,7 @@ const GenresPage = () => {
 	const genreUrlParams = searchParams.get("genre");
 
 	const { id } = useParams();
-  	const genreIdfromParams = id;
+	const genreIdfromParams = id;
 
 	const [genreId, setGenreId] = useState(genreIdfromParams || genreUrlParams || "");
 
@@ -57,7 +57,7 @@ const GenresPage = () => {
 
 		{moviesByGenre.data &&
 			<Pagination
-			totalpages={moviesByGenre.data.total_pages > 500 ? 500 : moviesByGenre.data.total_pages}
+			totalPages={moviesByGenre.data.total_pages > 500 ? 500 : moviesByGenre.data.total_pages}
 			page={pageParams}
 			hasNextPage={
 				moviesByGenre.data.total_pages > 500
