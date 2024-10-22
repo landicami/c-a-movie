@@ -39,8 +39,8 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSearchMovie }) => {
 						Get movies!
 					</Button>
 				</InputGroup>
-	 		 </Form>
-	  	</Container>  )
+			</Form>
+		</Container>  )
 }
 
 export default SearchForm
