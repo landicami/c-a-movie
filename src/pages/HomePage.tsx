@@ -1,8 +1,8 @@
-import { Link, useSearchParams } from "react-router-dom";
-import SearchForm from "../components/SearchForm";
-import useSearchMovies from "../hooks/useSearchMovies";
-import MoviesCard from "../components/MoviesCard";
-import Pagination from "../components/Pagination";
+import { Link } from "react-router-dom";
+// import SearchForm from "../components/SearchForm";
+// import useSearchMovies from "../hooks/useSearchMovies";
+// import MoviesCard from "../components/MoviesCard";
+// import Pagination from "../components/Pagination";
 import { useEffect, useState } from "react";
 import ListGroup  from "react-bootstrap/ListGroup";
 
@@ -12,24 +12,15 @@ interface MovieObject {
   }
 
 const HomePage = () => {
-	const [searchParams, setSearchParams ] = useSearchParams();
-
-	const searchParamsQuery = searchParams.get("query") || "";
-	const pageParams = Number(searchParams.get("page")) || 1;
 
 
-	const searchMovieBase = async (search: string) => {
-		setSearchParams({ query: search.trim(), page: "1"})
-	}
-
-	const searchResponse = useSearchMovies(searchParamsQuery, pageParams)
 
 	const [movieHistory, setMovieHistory] = useState<MovieObject[]>([]);
 
 	useEffect(() => {
 		const storedMovies = JSON.parse(localStorage.getItem('historyMovies') || '[]');
 		setMovieHistory(storedMovies);
-	  }, []);
+	}, []);
 
   return (
     <>
@@ -44,46 +35,15 @@ const HomePage = () => {
 			</div>
 		</div>
 	</div>
-	<h2 className="text-center">Or search for any movie you like!</h2>
-
-	<SearchForm
-	onSearchMovie={searchMovieBase}
-	/>
-
-	{searchResponse.data &&
-		<Pagination
-		totalpages={searchResponse.data.total_pages > 500 ? 500 : searchResponse.data.total_pages}
-		page={pageParams}
-		hasNextPage={pageParams === searchResponse.data.total_pages}
-		hasPreviousPage={pageParams === 1 }
-		onNextPage={() => setSearchParams({page: (pageParams + 1).toString(), query: searchParamsQuery } )}
-		onPreviousPage={() => setSearchParams({page: (pageParams - 1).toString(), query: searchParamsQuery })}
-		/>
-	}
-
-	<div className="row">
-		{searchResponse.data && <>
-		<p>You searched for "{searchParamsQuery}" and got {searchResponse.data.total_results} hits.</p>
-
-			<MoviesCard
-			data={searchResponse.data.results}
-			/>
-		</>
-		}
-
-		{searchResponse.data?.results.length === 0 &&
-			<p>
-				No movies on that search, try againg!
-			</p>
-		}
-
 		{movieHistory.length > 0 &&
-		<>
-			<h4>Movies you have visited:</h4>
+	<>
+	<hr className="mt-5"/>
+	<div className="col-8 mt-5">
+			<h4>The latest ten movies you have visited earlier:</h4>
 			<div className="row">
 
 			{movieHistory.map(movie =>
-			<div className="col-8" key={movie.id}>
+			<div className="col-lg-4 col-sm-12 mt-2" key={movie.id}>
 				<ListGroup>
 						<ListGroup.Item><Link className="movie-link" to={"movies/" + movie.id}>{movie.title}</Link></ListGroup.Item>
 				</ListGroup>
@@ -91,11 +51,11 @@ const HomePage = () => {
 			)
 			}
 		</div>
+		</div>
+
 		</>
 		}
 
-
-	</div>
 
 
 	</>

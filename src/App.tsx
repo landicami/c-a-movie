@@ -23,6 +23,7 @@ import clsx from 'clsx';
 import '../src/assets/App.scss';
 //Hooks
 import useTheme from './hooks/useTheme';
+import SearchPage from './pages/SearchPage';
 
 
 function App() {
@@ -42,6 +43,8 @@ function App() {
 				<Container className='pt-2'>
 					<Routes>
 						<Route path="/" element={<HomePage />} />
+						<Route path="/search" element={<SearchPage />} />
+
 						<Route path="/nowplaying" element={<NowPlayingPage />} />
 						<Route path="/trending" element={<TrendingPage />} />
 						<Route path="/toprated" element={<TopRatedPage />} />

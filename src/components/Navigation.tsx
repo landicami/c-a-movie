@@ -17,6 +17,8 @@ const Navigation = () => {
 					<Navbar.Collapse id="basic-navbar-nav">
 						<Nav className="ms-auto">
 							<Nav.Link as={NavLink} end to="/">Home</Nav.Link>
+							<Nav.Link as={NavLink} end to="/search">Search for movies</Nav.Link>
+
 							<Nav.Link as={NavLink} end to="/nowplaying">Now playing</Nav.Link>
 							<Nav.Link as={NavLink} end to="/trending">Trending</Nav.Link>
 							<Nav.Link as={NavLink} end to="/toprated">Top rated</Nav.Link>
@@ -33,7 +35,7 @@ const Navigation = () => {
 						</Nav>
 					</Navbar.Collapse>
 			</Container>
-	  </Navbar>
+	</Navbar>
 	)
 }
 
